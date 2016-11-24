@@ -7,27 +7,27 @@ class ContactPolicy
   end
 
   def new?
-    @current_user
+    @current_user.admin? or @current_user.officer?
   end
 
   def create?
-    @current_user
+    @current_user.admin? or @current_user.officer?
   end
 
   def index?
-    @current_user.admin?
+    @current_user.admin? or @current_user.host? or @current_user.officer?
   end
 
   def show?
-    @current_user.admin? or @current_user == @contact.user
+    @current_user.admin? or @current_user.host? or @current_user.officer?
   end
 
   def edit?
-    @current_user == @contact.user
+    @current_user.admin? or @current_user.officer?
   end
 
   def update?
-    @current_user == @contact.user
+    @current_user.admin? or @current_user.officer?
   end
 
   def destroy?
