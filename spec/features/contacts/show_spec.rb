@@ -5,7 +5,7 @@ Warden.test_mode!
 #   As a user
 #   I want to login
 #   So I can visit the contact list
-feature 'Show', :devise do
+feature 'Show contacts', :devise do
 
   after(:each) do
     Warden.test_reset!

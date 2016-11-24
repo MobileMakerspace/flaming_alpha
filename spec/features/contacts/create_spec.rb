@@ -5,7 +5,7 @@ Warden.test_mode!
 #   As a user
 #   I want to login
 #   So I can create a contact
-feature 'Create', :devise do
+feature 'Create Contact', :devise do
 
   after(:each) do
     Warden.test_reset!
