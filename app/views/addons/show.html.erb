@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @addon.name %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @addon.price %>
+</p>
+
+<p>
+  <strong>Active:</strong>
+  <%= @addon.active %>
+</p>
+
+<p>
+  <strong>Authrequired:</strong>
+  <%= @addon.authrequired %>
+</p>
+
+<%= link_to 'Edit', edit_addon_path(@addon) %> |
+<%= link_to 'Back', addons_path %>

@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161124024920) do
+ActiveRecord::Schema.define(version: 20161125032803) do
+
+  create_table "addons", force: :cascade do |t|
+    t.string   "name"
+    t.decimal  "price"
+    t.boolean  "active",       default: false
+    t.boolean  "authrequired", default: true
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
 
   create_table "contacts", force: :cascade do |t|
     t.string   "name"
