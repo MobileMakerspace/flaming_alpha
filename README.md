@@ -3,6 +3,17 @@ Flaming Alpha
 
 Yet another makerspace membership management application.
 
+I'm developing this software to replace SeltzerCRM with a Rails application that I can support and extend. My intent is to have a system I can make available to other officers and hosts for general member management while being comfortable deploying and supporting.
+
+### Planned Features
+* Authentication
+* Authorization - role based
+* Contact management
+* Configurable membership plans
+* Configurable membership addons & discounts  
+
+SeltzerCRM features I do not plan on supporting - plugin system and the highly configurable role rights.
+
 
 ## Contributing
 
