@@ -1,0 +1,24 @@
+
+<%= simple_form_for(@contact_membership_form, url:memberships_path) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :email %>
+    <%= f.input :phone %>
+    <%= f.input :emergency_name %>
+    <%= f.input :emergency_phone %>
+    <%= f.input :addr_1 %>
+    <%= f.input :addr_2 %>
+    <%= f.input :city %>
+    <%= f.input :state %>
+    <%= f.input :zip %>
+    <%= collection_select(:membership, :plan_id, Plan.all, :id, :name) %>
+    <%= f.input :start, as: :string %>
+    <%= f.input :stop, as: :string %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, 'Create Membership' %>
+  </div>
+<% end %>

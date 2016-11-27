@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161125032803) do
+ActiveRecord::Schema.define(version: 20161125043457) do
 
   create_table "addons", force: :cascade do |t|
     t.string   "name"
@@ -34,6 +34,17 @@ ActiveRecord::Schema.define(version: 20161125032803) do
     t.string   "zip"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+  end
+
+  create_table "memberships", force: :cascade do |t|
+    t.integer  "contact_id"
+    t.integer  "plan_id"
+    t.date     "start"
+    t.date     "stop"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["contact_id"], name: "index_memberships_on_contact_id"
+    t.index ["plan_id"], name: "index_memberships_on_plan_id"
   end
 
   create_table "plans", force: :cascade do |t|
