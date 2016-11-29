@@ -9,8 +9,10 @@ class MembershipsController < ApplicationController
   end
 
   def create
+    # format the date for rails
     start =  params[:contact_membership_form]
     params[:contact_membership_form][:start] = Date.civil(start["start(1i)"].to_i, start["start(2i)"].to_i, start["start(3i)"].to_i)
+    # move the plan_id to contact_membership_form
     params[:contact_membership_form][:plan_id] = params[:membership][:plan_id]
     @contact_membership_form = ContactMembershipForm.new(contact_membership_form_params)
     authorize ContactMembershipForm
@@ -24,6 +26,11 @@ class MembershipsController < ApplicationController
   def index
     @memberships = Membership.all
     authorize @memberships
+  end
+
+  def show
+    @membership = Membership.find(params[:id])
+    authorize @membership
   end
 
   private
