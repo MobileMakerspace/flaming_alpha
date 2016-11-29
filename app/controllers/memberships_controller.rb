@@ -31,6 +31,7 @@ class MembershipsController < ApplicationController
   def show
     @membership = Membership.find(params[:id])
     authorize @membership
+    @contact = @membership.contact
   end
 
   private
