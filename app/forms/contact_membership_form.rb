@@ -12,10 +12,12 @@ class ContactMembershipForm
   attribute :city
   attribute :state
   attribute :zip
-  attribute :start
+  attribute :start, Date
   attribute :stop
   attribute :plan_id
 
+  attr_reader :membership
+  attr_reader :plan
 '''
   validates :name, presence: true
   validates :email, presence: true
@@ -36,7 +38,7 @@ class ContactMembershipForm
 
   def persist!
     contact = Contact.create!(name: name, email: email, phone: phone, emergency_name: emergency_name, emergency_phone: emergency_phone, addr_1:addr_1,addr_2: addr_2,city: city, state: state, zip:zip)
-    @membership = contact.memberships.create(plan: plan_id, start: start, stop: stop)
+    @membership = contact.memberships.create!(plan_id: self.plan_id, start: self.start, stop: self.stop)
   end
 
 end

@@ -1,0 +1,35 @@
+<h1>Memberships</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Plan</th>
+      <th>Start</th>
+      <th>Stop</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @memberships.each do |membership| %>
+      <tr>
+        <td><%= membership.contact.name %></td>
+        <td><%= membership.contact.email %></td>
+        <td><%= membership.contact.phone %></td>
+        <td><%= membership.plan.name %></td>
+        <td><%= membership.start %></td>
+        <td><%= membership.stop %></td>
+        <td><%= link_to 'Show', membership %></td>
+        <td><%= link_to 'Edit', edit_membership_path(membership) %></td>
+        <td><%= link_to 'Destroy', membership, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Membership', new_membership_path %>

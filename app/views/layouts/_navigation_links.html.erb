@@ -1,6 +1,7 @@
 <%# add navigation links to this file %>
 <% if user_signed_in? %>
   <% if current_user.try(:admin?) %>
+    <li><%= link_to 'Memberships', memberships_path %></li>
     <li><%= link_to 'Contacts', contacts_path %></li>
     <li><%= link_to 'Plans', plans_path %></li>
     <li><%= link_to 'Addons', addons_path %></li>
