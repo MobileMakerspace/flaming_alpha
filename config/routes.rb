@@ -4,5 +4,9 @@ Rails.application.routes.draw do
   resources :plans
   resources :contacts
   root to: 'visitors#index'
-  devise_for :users
+  devise_for :users, :skip => [:registrations]
+  as :user do
+    get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'
+    patch 'users' => 'devise/registrations#update', :as => 'user_registration'
+  end
 end

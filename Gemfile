@@ -40,6 +40,7 @@ end
 group :production do
   gem 'pg'
 end
+gem 'rails_12factor', group: :production
 group :test do
   gem 'capybara'
   gem 'database_cleaner'
