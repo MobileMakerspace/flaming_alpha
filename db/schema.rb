@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161125043457) do
+ActiveRecord::Schema.define(version: 20161219101521) do
 
   create_table "addons", force: :cascade do |t|
     t.string   "name"
@@ -45,6 +45,15 @@ ActiveRecord::Schema.define(version: 20161125043457) do
     t.datetime "updated_at", null: false
     t.index ["contact_id"], name: "index_memberships_on_contact_id"
     t.index ["plan_id"], name: "index_memberships_on_plan_id"
+  end
+
+  create_table "payment_notifications", force: :cascade do |t|
+    t.text     "notification_params"
+    t.string   "status"
+    t.string   "transaction_id"
+    t.datetime "purchased_at"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
   end
 
   create_table "plans", force: :cascade do |t|
