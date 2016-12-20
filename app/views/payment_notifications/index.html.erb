@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Payments</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Transaction ID</th>
+      <th>Status</th>
+      <th>Purchased</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @payment_notifications.each do |payment| %>
+      <tr>
+        <td><%= payment.transaction_id %></td>
+        <td><%= payment.status %></td>
+        <td><%= payment.purchased_at %></td>
+        <td><%= link_to 'Show', payment_notification_path(payment) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

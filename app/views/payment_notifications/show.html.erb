@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Transaction ID:</strong>
+  <%= @payment_notification.transaction_id %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @payment_notification.status %>
+</p>
+
+<p>
+  <strong>Purchased at:</strong>
+  <%= @payment_notification.purchased_at %>
+</p>
+
+<p>
+  <strong>RAW:</strong>
+  <%= @payment_notification.notification_params %>
+</p>
+
+<%= link_to 'Back', payment_notifications_path %>

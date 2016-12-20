@@ -1,5 +1,23 @@
 class PaymentNotificationsController < ApplicationController
   protect_from_forgery :except => [:create] #Otherwise the request from PayPal wouldn't make it to the controller
+  before_action :authenticate_user!, :except => [:create]
+
+  # GET /payments
+  # GET /payments.json
+  def index
+    @payment_notifications = PaymentNotification.all
+    authorize PaymentNotification
+  end
+
+  # GET /payments/1
+  # GET /payments/1.json
+  def show
+    @payment_notification = PaymentNotification.find(params[:id])
+    authorize @payment_notification
+  end
+
+
+
   def create
     params.permit! # Permit all Paypal input params
     response = validate_IPN_notification(request.raw_post)
