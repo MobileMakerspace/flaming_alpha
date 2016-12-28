@@ -10,8 +10,16 @@ class MembershipPolicy
     @current_user.admin? or @current_user.host? or @current_user.officer?
   end
 
+  def new?
+    @current_user.admin? or @current_user.officer?
+  end
+
   def show?
     @current_user.admin? or @current_user.host? or @current_user.officer?
+  end
+
+  def create?
+    @current_user.admin? or @current_user.officer?
   end
 
   def edit?

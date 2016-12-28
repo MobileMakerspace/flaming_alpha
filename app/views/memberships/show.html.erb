@@ -1,4 +1,5 @@
-<h1>Membership</h1>
+<p id="notice"><%= notice %></p>
+
 <p>
   <strong>Name:</strong>
   <%= @contact.name %>
@@ -10,54 +11,17 @@
 </p>
 
 <p>
-  <strong>Phone:</strong>
-  <%= @contact.phone %>
-</p>
-
-<p>
-  <strong>Emergency name:</strong>
-  <%= @contact.emergency_name %>
-</p>
-
-<p>
-  <strong>Emergency phone:</strong>
-  <%= @contact.emergency_phone %>
-</p>
-
-<p>
-  <strong>Addr 1:</strong>
-  <%= @contact.addr_1 %>
-</p>
-
-<p>
-  <strong>Addr 2:</strong>
-  <%= @contact.addr_2 %>
-</p>
-
-<p>
-  <strong>City:</strong>
-  <%= @contact.city %>
-</p>
-
-<p>
-  <strong>State:</strong>
-  <%= @contact.state %>
-</p>
-
-<p>
-  <strong>Zip:</strong>
-  <%= @contact.zip %>
-</p>
-
-<p>
-  <strong>Plan Name:</strong>
+  <strong>Plan:</strong>
   <%= @membership.plan.name %>
 </p>
 <p>
-  <strong>Plan Start Date:</strong>
+  <strong>Start:</strong>
   <%= @membership.start %>
 </p>
 <p>
-  <strong>Plan End Date:</strong>
+  <strong>End:</strong>
   <%= @membership.stop %>
 </p>
+
+<%= link_to 'Edit', edit_contact_path(@contact) %> |
+<%= link_to 'Back', contacts_path %>

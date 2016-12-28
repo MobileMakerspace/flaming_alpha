@@ -50,5 +50,6 @@
   <%= @contact.zip %>
 </p>
 
+<%= link_to 'New Membership', new_contact_membership_path(@contact) %> | 
 <%= link_to 'Edit', edit_contact_path(@contact) %> |
 <%= link_to 'Back', contacts_path %>

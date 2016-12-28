@@ -1,4 +1,6 @@
-<%= simple_form_for([@contact, @contact.memberships.build]) do |f| %>
+<h1>Editing Membership</h1>
+
+<%= simple_form_for(@membership, url: contact_membership_path) do |f| %>
   <p>
     <%= f.label "Membership plan" %>
     <%= collection_select(:membership, :plan_id, Plan.all, :id, :name, {:prompt => 'Select Membership Plan...'}) %>
@@ -13,3 +15,6 @@
     <%= f.submit 'Add Membership' %>
   </p>
 <% end %>
+
+<%= link_to 'Show', @memberships %> |
+<%= link_to 'Back', contact_memberships_path(@contact) %>

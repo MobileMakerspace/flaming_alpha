@@ -30,14 +30,15 @@ group :development do
   gem 'foreman'
   gem 'rails_layout'
   gem 'spring-commands-rspec'
+
 end
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'rspec-rails'
-  gem 'sqlite3'
 end
-group :production do
+
+group :production, :development do
   gem 'pg'
 end
 gem 'rails_12factor', group: :production
@@ -46,4 +47,5 @@ group :test do
   gem 'database_cleaner'
   gem 'launchy'
   gem 'selenium-webdriver'
+  gem 'sqlite3'
 end

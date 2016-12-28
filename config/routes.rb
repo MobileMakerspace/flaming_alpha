@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
-  resources :memberships
   resources :addons
   resources :plans
-  resources :contacts
+  resources :contacts do
+    resources :memberships
+  end
+  resources :members
+  
   root to: 'visitors#index'
   devise_for :users, :skip => [:registrations]
   as :user do

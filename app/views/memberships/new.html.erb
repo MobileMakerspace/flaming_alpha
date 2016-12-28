@@ -1,5 +1,17 @@
 <h1>New Membership</h1>
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Name</strong></td>
+      <td><%= @contact.name %></td>
+    </tr>
+    <tr>
+      <td><strong>Email</strong></td>
+      <td><%= @contact.email %></td>
+    </tr>
+  </tbody>
+</table>
 
-<%= render 'form', contact_membership_form: @contacts %>
+<%= render 'form', membership: @membership %>
 
-<%= link_to 'Back', memberships_path %>
+<%= link_to 'Back', @contact %>
