@@ -1,0 +1,40 @@
+
+Billing
+dana = Contact.first
+rx = DoubleEntry.account(:accounts_receivable, :scope => dana)
+sales = DoubleEntry.account(:sales_revenue)
+DoubleEntry.lock_accounts(sales, rx) do
+	DoubleEntry.transfer( Money.new(20_00), :from => sales, :to => rx, :code => :membership)
+end
+
+Payment
+
+cash = DoubleEntry.account(:cash)
+
+	DoubleEntry.transfer( Money.new(20_00), :from => rx, :to => cash, :code => :payment)
+
+
+# Bill each member $50 for membership
+sales = DoubleEntry.account(:sales_revenue)
+@members = Contact.joins(:memberships).where('contacts.id is not null').group('contacts.id')
+@members.each do  |member|
+  account = DoubleEntry.account( :accounts_receivable, :scope => member)
+	DoubleEntry.transfer( Money.new(50_00), :from => account, :to => sales, :code => :membership )
+end
+
+
+## Find aggregate 'sum' for accounts_receivabe during time range
+tr = DoubleEntry::Reporting::TimeRange.make(:year=>2017)
+DoubleEntry::Reporting.aggregate( :sum, :accounts_receivable, :membership, tr)
+
+
+
+!!! NOT WORKING !!!
+DoubleEntry::Reporting.scopes_with_minimum_balance_for_account(
+	     -Money.new(0),
+	     :accounts_receivable,
+	   )
+
+
+Create new method for finding accounts with negative balance, could be called maximum_balance
+SELECT * from "double_entry_account_balances" WHERE account = 'accounts_receivable' AND balance < 0;
