@@ -1,4 +1,15 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    resources :memberships
+resources :users
+resources :addons
+resources :contacts
+resources :payment_notifications
+resources :plans
+
+    root to: "memberships#index"
+  end
+
   resources :addons
   resources :plans
   resources :contacts do

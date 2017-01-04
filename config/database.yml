@@ -12,7 +12,7 @@ default: &default
 development:
   adapter: postgresql
   encoding: utf8
-  database: flaming_alpha_development
+  database: flaming_alpha_dev_master
   pool: 5
   username:
   password:
