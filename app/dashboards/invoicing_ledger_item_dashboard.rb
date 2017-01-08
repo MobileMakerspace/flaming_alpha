@@ -1,6 +1,6 @@
 require "administrate/base_dashboard"
 
-class ContactDashboard < Administrate::BaseDashboard
+class InvoicingLedgerItemDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.
   #
@@ -8,19 +8,14 @@ class ContactDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
-    memberships: Field::HasMany,
-    ledger_items: Field::HasMany.with_options(class_name: "InvoicingLedgerItem"),
+    #memberships: Field::HasMany,
+    #ledger_items: Field::HasMany.with_options(class_name: "InvoicingLedgerItem"),
     id: Field::Number,
-    name: Field::String,
-    email: Field::String,
-    phone: Field::String,
-    emergency_name: Field::String,
-    emergency_phone: Field::String,
-    addr_1: Field::String,
-    addr_2: Field::String,
-    city: Field::String,
-    state: Field::String,
-    zip: Field::String,
+    type: Field::String,
+    total_amount: Field::Number,
+    tax_amount: Field::Number,
+    status: Field::String,
+    issue_date: Field::DateTime,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -31,28 +26,21 @@ class ContactDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
-    :memberships,
-    :ledger_items,
+    :type,
+    :total_amount,
     :id,
-    :name,
+    :status,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
-    :memberships,
-    :ledger_items,
     :id,
-    :name,
-    :email,
-    :phone,
-    :emergency_name,
-    :emergency_phone,
-    :addr_1,
-    :addr_2,
-    :city,
-    :state,
-    :zip,
+    :issue_date,
+    :type,
+    :total_amount,
+    :tax_amount,
+    :status,
     :created_at,
     :updated_at,
   ].freeze
@@ -61,19 +49,14 @@ class ContactDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
-    :memberships,
-    :ledger_items,
-    :name,
-    :email,
-    :phone,
-    :emergency_name,
-    :emergency_phone,
-    :addr_1,
-    :addr_2,
-    :city,
-    :state,
-    :zip,
-  ].freeze
+    :id,
+    :issue_date,
+    :type,
+    :total_amount,
+    :tax_amount,
+    :status,
+    :created_at,
+    :updated_at,  ].freeze
 
   # Overwrite this method to customize how contacts are displayed
   # across all pages of the admin dashboard.

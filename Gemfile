@@ -10,6 +10,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'bourbon'
 gem 'administrate'
+gem 'invoicing'
 
 group :development, :test do
   gem 'byebug', platform: :mri

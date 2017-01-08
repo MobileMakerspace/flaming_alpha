@@ -6,6 +6,7 @@ resources :addons
 resources :contacts
 resources :payment_notifications
 resources :plans
+resources :invoicing_ledger_items
 
     root to: "memberships#index"
   end
@@ -16,7 +17,7 @@ resources :plans
     resources :memberships
   end
   resources :members
-  
+
   root to: 'visitors#index'
   devise_for :users, :skip => [:registrations]
   as :user do
