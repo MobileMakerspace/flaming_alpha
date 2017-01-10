@@ -7,6 +7,7 @@ class MembershipsController < ApplicationController
     authorize Membership
     @memberships = Membership.where(contact_id: params[:contact_id])
     @contact = Contact.find(params[:contact_id])
+    @ledger_items = @contact.ledger_items.all()
   end
 
 

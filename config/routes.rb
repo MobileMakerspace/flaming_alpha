@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+
   namespace :admin do
     resources :memberships
 resources :users
@@ -15,6 +17,7 @@ resources :invoicing_ledger_items
   resources :plans
   resources :contacts do
     resources :memberships
+    resources :invoices
   end
   resources :members
 

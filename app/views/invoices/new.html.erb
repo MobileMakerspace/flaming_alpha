@@ -1,0 +1,8 @@
+<h1>New Invoice</h1>
+<p>Sender: Mobile Makerspace</p>
+<p>Recipient: <%= @contact.name %></p>
+<p>Due: <%= @invoice.due_date %></p>
+
+<%= render 'form', invoice: @invoice %>
+
+<%= link_to 'Back', @contact %>

@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-
+<h1>Member Info</h1>
 <table>
   <tbody>
     <tr>
@@ -12,7 +12,38 @@
     </tr>
   </tbody>
 </table>
-<h1>Membership</h1>
+<p>
+<%= link_to 'Create Invoice', new_contact_invoice_path(@contact) %>
+</p>
+
+<h2>Ledger Items</h2>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Issue Date</th>
+      <th>Due Date</th>
+      <th>Status</th>
+      <th>Total</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ledger_items.each do |li| %>
+      <tr>
+        <td><%= li.id %></td>
+        <td><%= li.issue_date %></td>
+        <td><%= li.due_date %></td>
+        <td><%= li.status %></td>
+        <td><%= li.total_amount %></td>
+        <td><%= link_to 'Show', contact_invoice_path(@contact, li) %></td>        
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h2>Membership</h2>
 <table>
   <thead>
     <tr>

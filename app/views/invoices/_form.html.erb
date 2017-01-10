@@ -1,0 +1,15 @@
+<%= simple_form_for([@contact, @invoice]) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.simple_fields_for(:line_items) do |l| %>
+      <%= l.input :description %>
+      <%= l.input :quantity %>
+      <%= l.input :unit_price %>
+    <% end %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

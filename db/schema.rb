@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170105211029) do
+ActiveRecord::Schema.define(version: 20170108051832) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,8 @@ ActiveRecord::Schema.define(version: 20170105211029) do
     t.integer  "creator_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "tax_rate",                  precision: 8,  scale: 4
+    t.decimal  "unit_price",                precision: 20, scale: 4
   end
 
   create_table "invoicing_tax_rates", force: :cascade do |t|

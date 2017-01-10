@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Invoice</h1>
+<table>
+    <tr>
+      <td><strong>Name</strong></td>
+      <td><%= @contact.name %></td>
+    </tr>
+    <tr>
+      <th>ID</th>
+      <td><%= @invoice.id %></td>
+    </tr>
+    <tr>
+      <th>Total</th>
+      <td><%= @invoice.total_amount %></td>
+    </tr>
+    <tr>
+      <th>Status</th>
+      <td><%= @invoice.status %></td>
+    </tr>
+</table>
+<h2>Line Items</h2>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Quantity</th>
+      <th>Unit Price</th>
+      <th>Tax rate</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @invoice.line_items.each do |li| %>
+      <tr>
+        <td><%= li.description %></td>
+        <td><%= li.quantity %></td>
+        <td><%= li.unit_price %></td>
+        <td><%= li.tax_rate %></td>
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>
