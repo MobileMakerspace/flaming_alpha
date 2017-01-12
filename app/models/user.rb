@@ -2,6 +2,8 @@ class User < ApplicationRecord
   enum role: [:user, :host,:officer, :admin]
   after_initialize :set_default_role, :if => :new_record?
 
+  has_many :subscriptions
+
   def set_default_role
     self.role ||= :user
   end
