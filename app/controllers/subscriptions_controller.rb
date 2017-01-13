@@ -1,15 +1,17 @@
 class SubscriptionsController < ApplicationController
   before_action :authenticate_user!
-  # TODO after_action :verify_authorized
+  after_action :verify_authorized
 
   def new
     @subscription = Subscription.new
+    authorize Subscription
     @plans = Plan.all
     @users = User.all
   end
 
   def create
     @subscription = Subscription.new(subscription_params)
+    authorize @subscription
     respond_to do |format|
       if @subscription.save
         format.html { redirect_to root_path(), notice: 'Subscription was successfully created.' }

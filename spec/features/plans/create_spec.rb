@@ -29,15 +29,22 @@ feature 'Create Plan', :devise do
     expect(page).to have_content("You are not authorized to perform this action")
   end
 
-  scenario 'officer cannot create contacts' do
+  scenario 'officer cannot create plans' do
     user = FactoryGirl.create(:officer)
     login_as(user, :scope => :user)
     visit new_plan_path()
     expect(page).to have_content("You are not authorized to perform this action")
-end
+  end
+
+  scenario 'user cannot create plans' do
+    user = FactoryGirl.create(:user)
+    login_as(user, :scope => :user)
+    visit new_plan_path()
+    expect(page).to have_content("You are not authorized to perform this action")
+  end
 
   # Scenario:
-  scenario 'user cannot add contacts if not signed in' do
+  scenario 'user cannot add plans if not signed in' do
     visit plans_path()
     expect(page).to have_content("You need to sign in")
   end
