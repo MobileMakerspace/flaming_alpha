@@ -6,6 +6,10 @@ class SubscriptionPolicy
     @subscription = model
   end
 
+  def index?
+    @current_user.admin?
+  end
+
   def new?
     @current_user.admin?
   end
