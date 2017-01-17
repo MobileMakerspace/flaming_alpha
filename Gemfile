@@ -24,7 +24,6 @@ gem 'foundation-rails', '~> 5.5'
 gem 'high_voltage'
 gem 'pundit'
 gem 'simple_form'
-gem 'invoicing'
 group :development do
   gem 'better_errors'
   gem 'foreman'
