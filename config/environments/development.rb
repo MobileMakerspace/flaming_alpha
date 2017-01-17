@@ -72,4 +72,15 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  # double_entry workaround for scope classes not matching
+ # https://github.com/envato/double_entry/issues/75#issuecomment-67241069
+ Spring.after_fork do
+   DoubleEntry.configure do |config|
+     config.accounts = nil
+     config.transfers = nil
+   end
+   load 'config/initializers/double_entry.rb'
+ end
+ 
 end

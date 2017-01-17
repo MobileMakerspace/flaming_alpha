@@ -1,18 +1,16 @@
 class BillMembershipService
   def call(params)
-    invoice = MemberInvoice.new
-    invoice.recipient_id = params[:user_id]
-    invoice.currency = 'usd'
-    invoice.status = 'open'
-    invoice.issue_date = Time.now
-    invoice.sender_id = params[:sender_id]
-
-    # add line items
-    quantity = params[:quantity] # 1 is a month, use decimals pro-rating
-    plan = Plan.find(params[:plan_id])
-    invoice.line_items.build(description: plan.name, unit_price: plan.price, quantity: quantity)
-    # ... add line_items to the invoice as needed
-
-    invoice.save
+    # :user_id, :sender_id, :quantity, :plan_id
+    user = User.find(params[:user_id])
+    receivables = DoubleEntry.account(:accounts_receivable, :scope => user)
+    sales = DoubleEntry.account(:sales_revenue)
+    price = Plan.find(params[:plan_id]).price
+    price = price * params[:quantity]
+    DoubleEntry.transfer(
+      Money.new(price),
+      :from => receivables,
+      :to   => sales,
+      :code => :membership
+    )
   end
 end
