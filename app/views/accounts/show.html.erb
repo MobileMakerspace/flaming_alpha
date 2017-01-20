@@ -26,7 +26,7 @@
     <tr>
       <td colspan="2"></td>
       <td>Balance</td>
-      <td><%=@lines.last.balance %></td>
+      <td><%=@lines.last.balance unless @lines.last.nil? %></td>
       <td></td>
     </tr>
   </tbody>

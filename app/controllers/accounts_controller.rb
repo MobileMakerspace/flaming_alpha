@@ -9,7 +9,9 @@ class AccountsController < ApplicationController
   end
 
   def show
-    authorize params[:id]
+    @account = Account.new
+    @account.id = params[:id].to_i
+    authorize @account
     @lines = DoubleEntry::Line.where(scope: params[:id])
   end
 

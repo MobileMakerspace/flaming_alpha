@@ -16,7 +16,7 @@ feature 'List account(s)', :devise do
   end
 
   scenario 'user can not list accounts' do
-    user = FactoryGirl.create(:host)
+    user = FactoryGirl.create(:user)
     login_as(user, :scope => :user)
     visit accounts_path()
     expect(page).to have_content("not authorized")
@@ -28,6 +28,22 @@ feature 'List account(s)', :devise do
     expect(page).to have_content("You need to sign in")
   end
 
+  scenario 'admin can view a user ledger' do
+    user = FactoryGirl.create(:admin)
+    member = FactoryGirl.create(:user)
+    login_as(user, :scope => :user)
 
+    visit account_path(member.id)
+    expect(page).to have_content("Ledger")
+  end
+
+  scenario 'user can view their ledger' do
+    user = FactoryGirl.create(:admin)
+    member = FactoryGirl.create(:user)
+    login_as(member, :scope => :user)
+
+    visit account_path(member.id)
+    expect(page).to have_content("Ledger")
+  end
 
 end
