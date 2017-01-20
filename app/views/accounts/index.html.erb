@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Ledger</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Account</th>
+      <th>Scope</th>
+      <th>Amount</th>
+      <th>Balance</th>
+      <th>Partner Account</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @lines.each do |line| %>
+      <tr>
+        <td><%= line.account.identifier %></td>
+        <td><%= line.scope %></td>
+        <td><%= line.amount %></td>
+        <td><%= line.balance %></td>
+        <td><%= line.partner_account.identifier %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
