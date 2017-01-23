@@ -12,14 +12,17 @@
 
 ActiveRecord::Schema.define(version: 20170123152057) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "double_entry_account_balances", force: :cascade do |t|
     t.string   "account",    limit: 31, null: false
     t.string   "scope",      limit: 23
     t.integer  "balance",               null: false
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
-    t.index ["account"], name: "index_account_balances_on_account"
-    t.index ["scope", "account"], name: "index_account_balances_on_scope_and_account", unique: true
+    t.index ["account"], name: "index_account_balances_on_account", using: :btree
+    t.index ["scope", "account"], name: "index_account_balances_on_scope_and_account", unique: true, using: :btree
   end
 
   create_table "double_entry_line_aggregates", force: :cascade do |t|
@@ -37,7 +40,7 @@ ActiveRecord::Schema.define(version: 20170123152057) do
     t.string   "range_type", limit: 15, null: false
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
-    t.index ["function", "account", "code", "year", "month", "week", "day"], name: "line_aggregate_idx"
+    t.index ["function", "account", "code", "year", "month", "week", "day"], name: "line_aggregate_idx", using: :btree
   end
 
   create_table "double_entry_line_checks", force: :cascade do |t|
@@ -54,7 +57,7 @@ ActiveRecord::Schema.define(version: 20170123152057) do
     t.string   "value",      limit: 64, null: false
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
-    t.index ["line_id", "key", "value"], name: "lines_meta_line_id_key_value_idx"
+    t.index ["line_id", "key", "value"], name: "lines_meta_line_id_key_value_idx", using: :btree
   end
 
   create_table "double_entry_lines", force: :cascade do |t|
@@ -70,21 +73,19 @@ ActiveRecord::Schema.define(version: 20170123152057) do
     t.string   "detail_type"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
-    t.index ["account", "code", "created_at"], name: "lines_account_code_created_at_idx"
-    t.index ["account", "created_at"], name: "lines_account_created_at_idx"
-    t.index ["scope", "account", "created_at"], name: "lines_scope_account_created_at_idx"
-    t.index ["scope", "account", "id"], name: "lines_scope_account_id_idx"
+    t.index ["account", "code", "created_at"], name: "lines_account_code_created_at_idx", using: :btree
+    t.index ["account", "created_at"], name: "lines_account_created_at_idx", using: :btree
+    t.index ["scope", "account", "created_at"], name: "lines_scope_account_created_at_idx", using: :btree
+    t.index ["scope", "account", "id"], name: "lines_scope_account_id_idx", using: :btree
   end
 
   create_table "payment_notifications", force: :cascade do |t|
-    t.integer  "user_id"
     t.text     "notification_params"
     t.string   "status"
     t.string   "transaction_id"
     t.datetime "purchased_at"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
-    t.index ["user_id"], name: "index_payment_notifications_on_user_id"
   end
 
   create_table "plans", force: :cascade do |t|
@@ -104,8 +105,8 @@ ActiveRecord::Schema.define(version: 20170123152057) do
     t.date     "stop"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["plan_id"], name: "index_subscriptions_on_plan_id"
-    t.index ["user_id"], name: "index_subscriptions_on_user_id"
+    t.index ["plan_id"], name: "index_subscriptions_on_plan_id", using: :btree
+    t.index ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -135,11 +136,11 @@ ActiveRecord::Schema.define(version: 20170123152057) do
     t.string   "invited_by_type"
     t.integer  "invited_by_id"
     t.integer  "invitations_count",      default: 0
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
-    t.index ["invitations_count"], name: "index_users_on_invitations_count"
-    t.index ["invited_by_id"], name: "index_users_on_invited_by_id"
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true, using: :btree
+    t.index ["invitations_count"], name: "index_users_on_invitations_count", using: :btree
+    t.index ["invited_by_id"], name: "index_users_on_invited_by_id", using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
 end

@@ -1,6 +1,7 @@
 class SeedDevelopmentService
   def call(params=nil)
-    user = User.find_or_create_by!(email: 'member@example.org') do |user|
+    user = User.find_or_create_by!(email: 'member@example.com') do |user|
+        user.name = "Sample Member"
         user.password = Rails.application.secrets.admin_password
         user.password_confirmation = Rails.application.secrets.admin_password
         user.confirm
