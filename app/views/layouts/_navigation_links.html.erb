@@ -3,6 +3,10 @@
   <% if current_user.try(:admin?) %>
     <li><%= link_to 'Plans', plans_path %></li>
     <li><%= link_to 'Subscriptions', subscriptions_path %></li>
+    <li><%= link_to 'Accounts', accounts_path %></li>
+    <li><%= link_to 'Notifications', payment_notifications_path %></li>
+  <% else %>
+    <li><%= link_to 'My Account', account_path(current_user) %></li>
   <% end %>
 <% end %>
 <li><%= link_to 'About', page_path('about') %></li>

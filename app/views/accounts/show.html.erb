@@ -10,6 +10,7 @@
       <th>Amount</th>
       <th>Balance</th>
       <th>Partner Account</th>
+      <th>Code</th>
     </tr>
   </thead>
 
@@ -21,6 +22,7 @@
         <td><%= line.amount %></td>
         <td><%= line.balance %></td>
         <td><%= line.partner_account.identifier %></td>
+        <td><%= line.code %></td>
       </tr>
     <% end %>
     <tr>
