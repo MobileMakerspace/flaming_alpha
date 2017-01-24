@@ -48,7 +48,9 @@
         <td><%= line.code.capitalize %></td>
         <td><%= line.amount %></td>
         <td><%= line.balance %></td>
-        <td><%= line.metadata %></td>
+        <td><% line.metadata.each  do |note| %>
+          <%= note.key %>: <%= note.value %>
+        <% end %></td>
       </tr>
     <% end %>
     <tr>
