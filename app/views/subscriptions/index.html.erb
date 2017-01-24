@@ -9,6 +9,7 @@
       <th>Price</th>
       <th>Start</th>
       <th>Stop</th>
+      <th colspan="1"/>
     </tr>
   </thead>
 
@@ -19,6 +20,7 @@
         <td><%= s.plan.price %></td>
         <td><%= s.start %></td>
         <td><%= s.stop %></td>
+        <td><%= link_to 'Show', account_path(s.user.id) %></td>
       </tr>
     <% end %>
   </tbody>

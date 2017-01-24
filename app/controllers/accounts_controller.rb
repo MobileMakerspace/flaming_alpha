@@ -13,6 +13,8 @@ class AccountsController < ApplicationController
     @account.id = params[:id].to_i
     authorize @account
     @lines = DoubleEntry::Line.where(scope: params[:id])
+    @user = User.find(@account.id)
+    @subscriptions = @user.subscriptions
   end
 
   private

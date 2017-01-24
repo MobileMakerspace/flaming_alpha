@@ -5,12 +5,13 @@ class BillMembershipService
     receivables = DoubleEntry.account(:accounts_receivable, :scope => user)
     sales = DoubleEntry.account(:sales_revenue)
     price = Plan.find(params[:plan_id]).price
-    price = price * params[:quantity]
+    amount = price * params[:quantity]
     DoubleEntry.transfer(
-      Money.new(price),
+      Money.new(amount),
       :from => receivables,
       :to   => sales,
-      :code => :membership
+      :code => :membership,
+      :metadata => {:start => params[:start], :stop => params[:stop]}
     )
   end
 end

@@ -1,35 +1,60 @@
 <p id="notice"><%= notice %></p>
 
+<h1>Member Info</h1>
+<table>
+  <tbody>
+    <tr><td>Name:</td><td><%= @user.name %></td></tr>
+    <tr><td>Email:</td><td><%= @user.email %></td></tr>
+  </tbody>
+</table>
+<h1>Subscriptions</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Start</th>
+      <th>Stop</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @subscriptions.each do |s| %>
+      <tr>
+        <td><%= s.plan.name %></td>
+        <td><%= s.plan.price %></td>
+        <td><%= s.start %></td>
+        <td><%= s.stop %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
 <h1>Ledger</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Account</th>
-      <th>Scope</th>
+      <th>Code</th>
       <th>Amount</th>
       <th>Balance</th>
-      <th>Partner Account</th>
-      <th>Code</th>
+      <th>Notes</th>
     </tr>
   </thead>
 
   <tbody>
     <% @lines.each do |line| %>
       <tr>
-        <td><%= line.account.identifier %></td>
-        <td><%= line.scope %></td>
+        <td><%= line.code.capitalize %></td>
         <td><%= line.amount %></td>
         <td><%= line.balance %></td>
-        <td><%= line.partner_account.identifier %></td>
-        <td><%= line.code %></td>
+        <td><%= line.metadata %></td>
       </tr>
     <% end %>
     <tr>
-      <td colspan="2"></td>
+      <td colspan="1"></td>
       <td>Balance</td>
       <td><%=@lines.last.balance unless @lines.last.nil? %></td>
-      <td></td>
     </tr>
   </tbody>
 </table>
