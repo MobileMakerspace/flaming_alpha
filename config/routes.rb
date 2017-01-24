@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    resources :users
+    resources :payment_notifications
+    resources :plans
+    resources :subscriptions
+
+    root to: "users#index"
+  end
+
   resources :plans
   resources :subscriptions
   resources :accounts

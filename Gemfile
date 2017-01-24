@@ -25,6 +25,8 @@ gem 'high_voltage'
 gem 'pundit'
 gem 'simple_form'
 gem 'double_entry'
+gem 'bourbon'
+gem 'administrate'
 
 group :development do
   gem 'better_errors'
