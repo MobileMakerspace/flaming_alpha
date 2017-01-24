@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :plan do
     name "MyString"
-    price "9.99"
+    price "5000"
     description "MyText"
     active false
     approval_needed false

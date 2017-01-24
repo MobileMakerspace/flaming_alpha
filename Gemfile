@@ -27,7 +27,7 @@ gem 'simple_form'
 gem 'double_entry'
 gem 'bourbon'
 gem 'administrate'
-
+gem 'money-rails'
 group :development do
   gem 'better_errors'
   gem 'foreman'
