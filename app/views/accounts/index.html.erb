@@ -11,6 +11,7 @@
       <th>Balance</th>
       <th>Partner Account</th>
       <th>Code</th>
+      <th>Notes</th>
     </tr>
   </thead>
 
@@ -23,6 +24,9 @@
         <td><%= line.balance %></td>
         <td><%= line.partner_account.identifier %></td>
         <td><%= line.code %></td>
+        <td><% line.metadata.each  do |note| %>
+          <%= note.key %>: <%= note.value %>
+        <% end %></td>
       </tr>
     <% end %>
   </tbody>
