@@ -17,6 +17,8 @@ class SubscriptionsController < ApplicationController
     authorize @subscription
     respond_to do |format|
       if @subscription.save
+        sub_params = {subscription_id: @subscription.id}
+        BillMembershipService.new.first_bill(sub_params)
         format.html { redirect_to root_path(), notice: 'Subscription was successfully created.' }
       else
         puts @subscription.errors

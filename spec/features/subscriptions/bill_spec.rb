@@ -2,9 +2,10 @@ include Warden::Test::Helpers
 Warden.test_mode!
 
 # Feature: create subscription
-#   As a user
+#   As an admin
 #   I want to login
 #   So I can create a subscription
+#   And verify the user was billed
 feature 'Create Subscription', :devise do
 
   after(:each) do
@@ -12,7 +13,7 @@ feature 'Create Subscription', :devise do
   end
 
   # Scenario:
-  scenario 'admin can create a subscription' do
+  scenario 'user is billed first month subscription' do
     user = FactoryGirl.create(:admin)
     user2 = FactoryGirl.create(:user)
     plan = FactoryGirl.create(:plan)
@@ -22,20 +23,10 @@ feature 'Create Subscription', :devise do
     select "#{plan.name}", :from => "subscription_plan_id"
     click_button 'Create Subscription'
     expect(page).to have_content("Subscription was successfully created")
+     visit account_path(user2)
+     expect(page).to have_content("#{plan.price}")
+    # verify the user was billed
   end
 
-  scenario 'user cannot create a subscription using this path' do
-    user = FactoryGirl.create(:admin)
-    user2 = FactoryGirl.create(:user)
-    plan = FactoryGirl.create(:plan)
-    login_as(user2, :scope => :user)
-    visit new_subscription_path()
-    expect(page).to have_content("not authorized")
-  end
-
-  scenario 'visitor cannot access path if not signed in' do
-    visit new_subscription_path()
-    expect(page).to have_content("You need to sign in")
-  end
 
 end
