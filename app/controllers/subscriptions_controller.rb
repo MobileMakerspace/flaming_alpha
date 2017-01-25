@@ -14,6 +14,8 @@ class SubscriptionsController < ApplicationController
 
   def create
     @subscription = Subscription.new(subscription_params)
+    @subscription.user = current_user unless current_user.admin?
+
     authorize @subscription
     respond_to do |format|
       if @subscription.save

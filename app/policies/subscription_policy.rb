@@ -11,11 +11,11 @@ class SubscriptionPolicy
   end
 
   def new?
-    @current_user.admin?
+    !@current_user.nil?
   end
 
   def create?
-    @current_user.admin?
+    !@current_user.nil?
   end
 
   def destroy?

@@ -1,0 +1,18 @@
+<%= simple_form_for(@subscription) do |f| %>
+  <%= f.error_notification %>
+  <p>
+    <%= f.label "User" %>
+    <%= collection_select(:subscription, :user_id, User.all, :id, :name, {:prompt => 'Select User'}) %>
+  </p>
+  <p>
+    <%= f.label "Plan" %>
+    <%= collection_select(:subscription, :plan_id, Plan.all, :id, :name, {:prompt => 'Select Subscription Plan'}) %>
+  </p>
+
+  </p>
+    <%= f.input :start, as: :date %>
+  </p>
+  <p>
+    <%= f.submit 'Create Subscription' %>
+  </p>
+<% end %>
