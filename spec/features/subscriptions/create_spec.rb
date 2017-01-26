@@ -32,7 +32,21 @@ feature 'Create Subscription', :devise do
     visit new_subscription_path()
     select "#{plan.name}", :from => "subscription_plan_id"
     click_button 'Create Subscription'
-    expect(page).to have_content("Subscription was successfully created")  end
+    expect(page).to have_content("Subscription was successfully created")
+  end
+
+  scenario 'user cannot create a new subscription if a valid subscription exists' do
+    user = FactoryGirl.create(:admin)
+    user2 = FactoryGirl.create(:user)
+    plan = FactoryGirl.create(:plan)
+    login_as(user2, :scope => :user)
+    visit new_subscription_path()
+    select "#{plan.name}", :from => "subscription_plan_id"
+    click_button 'Create Subscription'
+    expect(page).to have_content("Subscription was successfully created")
+    visit new_subscription_path()
+    expect(page).to have_content("Stop existing subscription before starting a new subscription.")
+  end
 
   scenario 'visitor cannot access path if not signed in' do
     visit new_subscription_path()

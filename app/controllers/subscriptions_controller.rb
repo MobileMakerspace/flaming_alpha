@@ -10,6 +10,11 @@ class SubscriptionsController < ApplicationController
   def new
     @subscription = Subscription.new
     authorize Subscription
+    # Don't allow if there is an existing subscription
+    res = Subscription.where("user_id = ? AND stop IS ?", current_user.id, nil).empty?
+    if !res
+      redirect_to account_path(current_user.id), notice: 'Stop existing subscription before starting a new subscription.'
+    end
   end
 
   def create
