@@ -7,6 +7,7 @@
     <li><%= link_to 'Notifications', payment_notifications_path %></li>
     <li><%= link_to 'Admin', admin_root_path %></li>
   <% else %>
+    <li><%= link_to 'Join', new_subscription_path %></li>  
     <li><%= link_to 'My Account', account_path(current_user) %></li>
   <% end %>
 <% end %>

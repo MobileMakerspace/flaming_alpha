@@ -12,3 +12,22 @@
     <%= f.submit 'Create Subscription' %>
   </p>
 <% end %>
+<br>
+<div class="row">
+  <% @plans.each do |plan| %>
+  <div class="column medium-4">
+
+    <ul class="pricing-table no-bullet text-center">
+      <li class="title"><%= plan.name %></li>
+      <li class="price"><%= plan.price %></li>
+      <li class="description"><%= plan.description %></li>
+      <li>Discounted classes</li>
+      <li>Voting rights</li>
+      <li>LASERS LASERS LASERS</li>
+
+      <li><a class="button" href="#">Buy Now</a></li>
+    </ul>
+
+  </div>
+  <% end %>
+</div>

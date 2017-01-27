@@ -10,6 +10,7 @@ class SubscriptionsController < ApplicationController
   def new
     @subscription = Subscription.new
     authorize Subscription
+    @plans = Plan.all
     # Don't allow if there is an existing subscription
     res = Subscription.where("user_id = ? AND stop IS ?", current_user.id, nil).empty?
     if !res
@@ -28,6 +29,7 @@ class SubscriptionsController < ApplicationController
         BillMembershipService.new.first_bill(sub_params)
         format.html { redirect_to root_path(), notice: 'Subscription was successfully created.' }
       else
+        @plans = Plan.all
         puts @subscription.errors
         format.html { render :new, notice: @subscription.errors.full_messages}
       end
