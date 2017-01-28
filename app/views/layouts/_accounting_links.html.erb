@@ -1,0 +1,7 @@
+<% if @current_user.admin? %>
+  <ul class="menu">
+    <li><%= link_to "Invoice", invoice_path(@user.id) %></li>
+    <li><%= link_to "Refund", credit_note_path(@user.id) %></li>
+    <li><a href="#0">Payment</a></li>
+  </ul>
+<% end %>

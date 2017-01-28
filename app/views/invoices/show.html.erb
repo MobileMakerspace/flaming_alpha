@@ -1,4 +1,5 @@
 <%= render 'layouts/accounting_links' %>
+
 <p id="notice"><%= notice %></p>
 
 <h1>Member Info</h1>
@@ -41,16 +42,18 @@
   </tbody>
 </table>
 
-<%= simple_form_for :credit_note, :url => url_for(:action => 'update', :controller => 'credit_notes'),
+<%= simple_form_for :invoice, :url => url_for(:action => 'update', :controller => 'invoices'),
     :method => 'put' do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
     <%= f.input :amount_cents, as: :text %>
     <%= f.input :note, as: :text %>
+    <%= f.input :start, as: :date %>
+    <%= f.input :stop, as: :date %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Create Credit Note" %>
+    <%= f.button :submit, "Create Invoice" %>
   </div>
 <% end %>

@@ -10,6 +10,7 @@ DoubleEntry.configure do |config|
 
   config.define_transfers do |transfers|
     transfers.define(:from => :accounts_receivable, :to => :sales_revenue, :code => :membership)
+    transfers.define(:from => :accounts_receivable, :to => :sales_revenue, :code => :manual_invoice)    
     transfers.define(:from => :cash, :to => :accounts_receivable, :code => :payment)
     transfers.define(:from => :sales_revenue, :to => :accounts_receivable, :code => :credit_note)
   end
