@@ -1,0 +1,13 @@
+<%= simple_form_for :payment, :url => url_for(:action => 'update', :controller => 'payments'),
+    :method => 'put' do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :amount_cents, as: :text %>
+    <%= f.input :note, as: :text %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Create Payment" %>
+  </div>
+<% end %>

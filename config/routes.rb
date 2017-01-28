@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :payment_notifications
   resources :credit_notes, only: [:show, :update]
   resources :invoices, only: [:show, :update]
+  resources :payments, only: [:show, :update]
   root to: 'visitors#index'
   devise_for :users, controllers: { :registrations => 'users/registrations',:invitations => 'users/invitations'}
 end
