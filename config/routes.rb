@@ -17,4 +17,5 @@ Rails.application.routes.draw do
   resources :payments, only: [:show, :update]
   root to: 'visitors#index'
   devise_for :users, controllers: { :registrations => 'users/registrations',:invitations => 'users/invitations'}
+  post "/hook" => "payment_notifications#create"
 end
