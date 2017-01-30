@@ -19,5 +19,5 @@
   <strong>RAW:</strong>
   <%= @payment_notification.notification_params %>
 </p>
-
+<%= link_to 'Apply Payment', edit_payment_notification_path(@payment_notification) %> | 
 <%= link_to 'Back', payment_notifications_path %>

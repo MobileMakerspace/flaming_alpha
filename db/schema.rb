@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170124225142) do
+ActiveRecord::Schema.define(version: 20170130200348) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,8 +84,11 @@ ActiveRecord::Schema.define(version: 20170124225142) do
     t.string   "status"
     t.string   "transaction_id"
     t.datetime "purchased_at"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.boolean  "applied",             default: false, null: false
+    t.integer  "user_id"
+    t.index ["user_id"], name: "index_payment_notifications_on_user_id", using: :btree
   end
 
   create_table "plans", force: :cascade do |t|

@@ -3,7 +3,8 @@ class User < ApplicationRecord
   after_initialize :set_default_role, :if => :new_record?
 
   has_many :subscriptions
-
+  has_many :payment_notifications
+  
   # Collection of all ledger items for this member
   has_many :ledger_items, :foreign_key => 'recipient_id', class_name: 'InvoicingLedgerItem'
 

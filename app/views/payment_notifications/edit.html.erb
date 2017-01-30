@@ -1,0 +1,20 @@
+<h1>Editing Payment Notification</h1>
+
+<%= simple_form_for(@payment_notification) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <p>
+      <%= pp @payment_notification.notification_params =%>
+      <%= f.label "User" %>
+      <%= collection_select(:user, :user_id, User.all, :id, :name, {:prompt => 'Select User'}) %>
+    </p>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, 'Apply Payment' %>
+  </div>
+<% end %>
+
+<%= link_to 'Show', @payment_notification %> |
+<%= link_to 'Back', payment_notifications_path %>

@@ -16,6 +16,11 @@ class PaymentNotificationsController < ApplicationController
     authorize @payment_notification
   end
 
+  # GET /payments/1/edit
+  def edit
+    @payment_notification = PaymentNotification.find(params[:id])
+    authorize @payment_notification
+  end
 
 
   def create
@@ -44,6 +49,31 @@ class PaymentNotificationsController < ApplicationController
     end
     render :nothing => true
   end
+
+  def update
+    @payment_notification = PaymentNotification.find(params[:id])
+    authorize @payment_notification
+
+    @user = User.find(payment_notification_params[:user][:user_id])
+    cn_params = {user_id: @user.id,
+      amount: @payment_notification.gross_payment_cents,
+      note: "Paypal transaction #{@payment_notification.transaction_id}"
+    }
+
+    if AcceptPaymentService.new.call(cn_params)
+      @payment_notification.user = @user
+      @payment_notification.applied = true
+      if @payment_notification.save!
+        redirect_to @payment_notification, notice: 'Payment was successfully applied.'
+      else
+        render :edit
+      end
+    else
+      render :edit
+    end
+  end
+
+
   protected
   def validate_IPN_notification(raw)
     uri = URI.parse(Rails.application.secrets.paypal_ipn_url + '?cmd=_notify-validate')
@@ -57,4 +87,11 @@ class PaymentNotificationsController < ApplicationController
                          'User-Agent' => "My custom user agent"
                        ).body
   end
+
+  private
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def payment_notification_params
+    params.permit(user: [:user_id])
+  end
+
 end
