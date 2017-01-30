@@ -5,7 +5,7 @@
 
   <div class="form-inputs">
     <p>
-      <%= pp @payment_notification.notification_params =%>
+      <%= @payment_notification.notification_params =%>
       <%= f.label "User" %>
       <%= collection_select(:user, :user_id, User.all, :id, :name, {:prompt => 'Select User'}) %>
     </p>
