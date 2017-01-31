@@ -25,8 +25,8 @@ class BillMembershipService
 
   def first_bill(params)
     subscription = Subscription.find(params[:subscription_id])
-    days_in_month = subscription.start.at_end_of_month - subscription.start.at_beginning_of_month
-    days_to_bill = days_in_month - subscription.start.day
+    days_in_month = (subscription.start.at_end_of_month - subscription.start.at_beginning_of_month) + 1
+    days_to_bill = (days_in_month - subscription.start.day) + 1
     prorate_quantity = days_to_bill / days_in_month
     bill_params = {
       user_id: subscription.user_id,
