@@ -1,5 +1,24 @@
 <div class="callout large primary">
-<div class="row column">
-  <h3 class="text-center">Welcome</h3>
+  <div class="row column">
+    <h3 class="text-center">Welcome</h3>
+  </div>
 </div>
+<div class="row column">
+  <% if user_signed_in? %>
+    <% if current_user.try(:admin?) %>
+      <h4>Admin Activities</h4>
+      <ul>
+        <li><%= link_to "Add User", new_user_invitation_path() %></li>
+        <li><%= link_to "New Subscription", new_subscription_path() %></li>
+        <li><%= link_to "Collect Payment" %></li>
+        <li><%= link_to "Apply PayPal Payments", payment_notifications_path() %></li>
+      </ul>
+      <h4>Makerspace Management</h4>
+      <ul>
+        <li><%= link_to "Settings" %></li>
+        <li><%= link_to "Membership Plans", plans_path() %></li>
+      </ul>
+
+    <% end %>
+  <% end %>
 </div>
