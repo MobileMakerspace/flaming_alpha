@@ -45,6 +45,13 @@ Run the app
 1. Change the admin password at `Edit User`
 1. Add your plans.
 
+### Adding a user
+1. Login as admin
+1. Select `Users` from menu then `Invite User`
+1. Enter name and email address, submit
+1. Select `Subscriptions` from the menu then `New Subscription`
+1. Select user, plan, modify start date, submit
+
 ## Contributing
 
 
