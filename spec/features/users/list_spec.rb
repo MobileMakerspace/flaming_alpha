@@ -23,7 +23,17 @@ feature 'User list', :devise do
     expect(page).to have_content(admin.name)
   end
 
-  pending 'visitor cannot see a list of users'
-  pending 'user cannot see a list of users'
+  scenario 'user cannot see a list of users' do
+      user = FactoryGirl.create(:user)
+      admin = FactoryGirl.create(:admin)
+      login_as(user, :scope => :user)
+      visit users_path()
+      expect(page).to have_content("not authorized")
+  end
+
+  scenario 'visitor cannot see a list of users' do
+    visit users_path()
+    expect(page).to have_content("You need to sign in")
+  end
 
 end
