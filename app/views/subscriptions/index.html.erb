@@ -1,11 +1,11 @@
 
-<h1>Subscriptions</h1>
+<h1>Active Subscriptions</h1>
 
 <table>
   <thead>
     <tr>
       <th>User</th>
-      <th>Price</th>
+      <th>Plan</th>
       <th>Start</th>
       <th>Stop</th>
       <th colspan="1"/>
@@ -13,10 +13,10 @@
   </thead>
 
   <tbody>
-    <% @subscriptions.each do |s| %>
+    <% @subscriptions.active.each do |s| %>
       <tr>
         <td><%= s.user.name %></td>
-        <td><%= s.plan.price %></td>
+        <td><%= s.plan.name %></td>
         <td><%= s.start %></td>
         <td><%= s.stop %></td>
         <td><%= link_to 'Show', account_path(s.user.id) %></td>

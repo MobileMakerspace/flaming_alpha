@@ -12,4 +12,8 @@ class Subscription < ApplicationRecord
   #   BillMembershipService.new.first_bill(params)
   # end
 
+  scope :active, -> {
+    where("stop IS ?", nil)
+  }
+
 end

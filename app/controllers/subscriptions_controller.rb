@@ -4,6 +4,7 @@ class SubscriptionsController < ApplicationController
 
   def index
     @subscriptions = Subscription.all
+    @active = @subscriptions.active
     authorize Subscription
   end
 
