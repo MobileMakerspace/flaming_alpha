@@ -13,6 +13,37 @@ I'm developing this software to replace SeltzerCRM with a Rails application that
 
 SeltzerCRM features I do not plan on supporting - plugin system and the highly configurable role rights.
 
+## Installation
+Ruby 2.2.5,
+Rails 5.0.1,
+Postgres 9.6.1
+
+Clone the repo and install the required gems
+
+    $ git clone https://github.com/MobileMakerspace/flaming_alpha.git
+    $ cd flaming_alpha
+    $ bundle install
+
+Setup local environment
+
+    # Modify ./config/secrets.yml
+    # Modify ./config/database.yml
+    $ rake db:create
+    $ rake db:migrate
+    $ rake db:test:prepare
+
+Verify tests
+
+    $ rspec
+
+Run the app
+
+    $ rails s
+
+## Getting Started
+1. Login using the seeded admin account created in `./config/secrets.yml`.
+1. Change the admin password at `Edit User`
+1. Add your plans.
 
 ## Contributing
 
