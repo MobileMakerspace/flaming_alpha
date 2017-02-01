@@ -1,6 +1,5 @@
-<p id="notice"><%= notice %></p>
   <% if current_user.try(:admin?) %>
 <%= render 'admin_form', subscription: @subscription %>
   <% else %>
-<%= render 'form', subscription: @subscription %>  
+<%= render 'form', subscription: @subscription %>
 <% end %>
