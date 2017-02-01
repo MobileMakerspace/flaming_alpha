@@ -1,0 +1,80 @@
+body {margin-top: 2rem;}
+
+$menu-background: #333;
+
+.title-bar {
+  background: $menu-background;
+  padding: 0.9rem;
+}
+
+.top-bar {
+  background: $menu-background;
+
+  ul {
+    background: $menu-background;
+
+    li {
+      background: $menu-background;
+
+        a {
+          color: #fff;
+      }
+    }
+  }
+}
+
+.menu-text {
+  color: #fff;
+
+  @media only screen and (max-width: 40em) {
+    display: none !important;
+  }
+}
+
+@media only screen and (min-width: 40em) {
+  .menu:last-child {
+    border-left: 1px solid #4e4e4e;
+  }
+
+  .menu:first-child {
+    border-left: none;
+  }
+
+  .menu {
+    li:not(:last-child) {
+      border-right: 1px solid #4e4e4e;
+    }
+  }
+}
+
+.dropdown.menu .submenu {
+  border: none;
+}
+
+.dropdown.menu .is-dropdown-submenu-parent.is-right-arrow>a::after {
+  border-color: #fff transparent transparent;
+}
+
+.is-drilldown-submenu-parent>a::after {
+  border-color: transparent transparent transparent #fff;
+}
+
+.js-drilldown-back::before {
+  border-color: transparent #fff transparent transparent;
+}
+// FORMS
+// Default medium-gray color
+$medium-gray: #cacaca;
+
+// Setting the form border color
+$form-border-color: $medium-gray;
+// Setting the form padding
+$form-padding: 1rem;
+// Setting the form border radius
+$form-radius: 3px;
+
+.log-in-form {
+
+  padding: $form-padding;
+  border-radius: $form-radius;
+}

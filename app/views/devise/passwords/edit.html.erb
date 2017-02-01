@@ -1,14 +1,18 @@
-<div class="authform">
+<div class="row">
+  <div class="medium-6 medium-centered large-4 large-centered columns">
+
   <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
+    <div class="row column log-in-form">
     <h3>Change your password</h3>
     <%= devise_error_messages! %>
     <%= f.hidden_field :reset_password_token %>
-    <div class="form-group">
+
       <%= f.label :password, 'New password' %>
-        <%= f.password_field :password, autofocus: true, autocomplete: 'off', class: 'form-control' %>
+        <%= f.password_field :password, autofocus: true, autocomplete: 'off' %>
       <%= f.label :password_confirmation, 'Confirm new password' %>
-        <%= f.password_field :password_confirmation, autocomplete: 'off', class: 'form-control' %>
-    </div>
-     <%= f.submit 'Change my Password', :class => 'button right' %>
+        <%= f.password_field :password_confirmation, autocomplete: 'off' %>
+     <%= f.submit 'Change my Password', :class => 'button expanded' %>
+   </div>
   <% end %>
+</div>
 </div>

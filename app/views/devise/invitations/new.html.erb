@@ -1,12 +1,17 @@
-<h2><%= t "devise.invitations.new.header" %></h2>
+<div class="row">
+  <div class="medium-6 medium-centered large-4 large-centered columns">
+    <h4 class="text-center"><%= t "devise.invitations.new.header" %></h4>
 
-<%= simple_form_for resource, as: resource_name, url: invitation_path(resource_name), html: { method: :post} do |f| %>
-  <%= devise_error_messages! %>
+    <%= simple_form_for resource, as: resource_name, url: invitation_path(resource_name), html: { method: :post} do |f| %>
+      <div class="row column log-in-form">
+        <%= devise_error_messages! %>
+        <%= f.input :name %>
+        <% resource.class.invite_key_fields.each do |field| -%>
+          <%= f.input field %>
+        <% end -%>
 
-  <%= f.input :name %>
-<% resource.class.invite_key_fields.each do |field| -%>
-  <%= f.input field %>
-<% end -%>
-
-<%= f.button :submit, t("devise.invitations.new.submit_button") %>
-<% end %>
+        <%= f.button :submit, t("devise.invitations.new.submit_button"), :class => "button expanded" %>
+      </div>
+    <% end %>
+  </div>
+</div>
