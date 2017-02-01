@@ -20,7 +20,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'devise_invitable'
-gem 'foundation-rails', '~> 5.5'
+gem 'foundation-rails'
 gem 'high_voltage'
 gem 'pundit'
 gem 'simple_form'
