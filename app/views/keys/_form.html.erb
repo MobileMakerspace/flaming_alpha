@@ -1,0 +1,15 @@
+<%= simple_form_for(@key) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.label "User" %>
+    <%= collection_select(:key, :user_id, User.all, :id, :name, {:prompt => 'Select User'}) %>    
+    <%= f.input :identifier %>
+    <%= f.input :assigned, as: :text %>
+    <%= f.input :returned, as: :text %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

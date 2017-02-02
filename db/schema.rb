@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170130200348) do
+ActiveRecord::Schema.define(version: 20170201234402) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,16 @@ ActiveRecord::Schema.define(version: 20170130200348) do
     t.index ["account", "created_at"], name: "lines_account_created_at_idx", using: :btree
     t.index ["scope", "account", "created_at"], name: "lines_scope_account_created_at_idx", using: :btree
     t.index ["scope", "account", "id"], name: "lines_scope_account_id_idx", using: :btree
+  end
+
+  create_table "keys", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "identifier"
+    t.date     "assigned"
+    t.date     "returned"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_keys_on_user_id", using: :btree
   end
 
   create_table "payment_notifications", force: :cascade do |t|

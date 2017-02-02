@@ -4,7 +4,7 @@ class User < ApplicationRecord
 
   has_many :subscriptions
   has_many :payment_notifications
-  
+
   # Collection of all ledger items for this member
   has_many :ledger_items, :foreign_key => 'recipient_id', class_name: 'InvoicingLedgerItem'
 
@@ -12,6 +12,8 @@ class User < ApplicationRecord
   has_many :member_invoices, :foreign_key => 'recipient_id', class_name: 'MemberInvoice'
   has_many :member_payments, :foreign_key => 'recipient_id', class_name: 'MemberPayment'
   has_many :member_credit_notes, :foreign_key => 'recipient_id', class_name: 'MemberCreditNote'
+
+  has_one :key
 
   def set_default_role
     self.role ||= :user

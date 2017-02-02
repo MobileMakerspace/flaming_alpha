@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :subscriptions
   resources :accounts
   resources :payment_notifications
+  resources :keys
   resources :credit_notes, only: [:show, :update]
   resources :invoices, only: [:show, :update]
   resources :payments, only: [:show, :update]

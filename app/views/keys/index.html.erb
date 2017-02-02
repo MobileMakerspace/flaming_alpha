@@ -1,0 +1,32 @@
+
+<h1>Keys</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Member</th>
+      <th>Identifier</th>
+      <th>Assigned</th>
+      <th>Returned</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @keys.each do |key| %>
+      <tr>
+        <td><%= key.user.name unless key.user.nil? %>
+        <td><%= key.identifier %></td>
+        <td><%= key.assigned %></td>
+        <td><%= key.returned %></td>
+        <td><%= link_to 'Show', key %></td>
+        <td><%= link_to 'Edit', edit_key_path(key) %></td>
+        <td><%= link_to 'Destroy', key, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Key', new_key_path %>

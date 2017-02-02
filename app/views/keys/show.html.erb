@@ -1,0 +1,24 @@
+
+<p>
+  <strong>Member:</strong>
+  <%= @key.user.name unless @key.user.nil? %>
+</p>
+
+<p>
+  <strong>identifier:</strong>
+  <%= @key.identifier %>
+</p>
+
+<p>
+  <strong>Assigned:</strong>
+  <%= @key.assigned %>
+</p>
+
+<p>
+  <strong>Returned:</strong>
+  <%= @key.returned %>
+</p>
+
+
+<%= link_to 'Edit', edit_key_path(@key) %> |
+<%= link_to 'Back', keys_path %>
