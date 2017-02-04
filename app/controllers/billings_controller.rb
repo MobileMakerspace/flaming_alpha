@@ -10,9 +10,9 @@ class BillingsController < ApplicationController
   def create
     @bill = Billing.new
     authorize @bill
-    start = billing_params[:start]
+    start = Date.parse(billing_params[:start])
     respond_to do |format|
-        bill_params = {start: Date.today}
+        bill_params = {start: start}
         BillMembershipService.new.bill_active_members(bill_params)
         format.html { redirect_to subscriptions_path(), notice: 'Billing was successfully processed.' }
     end
