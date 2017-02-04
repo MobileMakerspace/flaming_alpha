@@ -1,0 +1,14 @@
+<table>
+  <tr>
+    <th>Key</th>
+    <th>Value</th>
+    <th></th>
+  </tr>
+  <% @settings.each_key do |key| %>
+  <tr>
+    <td><%= key %></td>
+    <td><%= Setting.send(key) %></td>
+    <td><%= link_to 'edit', edit_setting_path(key) %></td>
+  </tr>
+  <% end %>
+</table>

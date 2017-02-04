@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   resources :invoices, only: [:show, :update]
   resources :payments, only: [:show, :update]
   resources :billings, only: [:create]
+  resources :settings
   root to: 'visitors#index'
   devise_for :users, controllers: { :registrations => 'users/registrations',:invitations => 'users/invitations'}
   resources :users, only: [:index, :show]

@@ -28,6 +28,8 @@ gem 'double_entry'
 gem 'bourbon'
 gem 'administrate'
 gem 'money-rails'
+gem "rails-settings-cached"
+
 group :development do
   gem 'better_errors'
   gem 'foreman'
