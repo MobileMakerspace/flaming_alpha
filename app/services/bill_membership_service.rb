@@ -1,4 +1,37 @@
 class BillMembershipService
+  def bill_active_members(params)
+    start = params[:start]
+    subscriptions = Subscription.all
+    active = subscriptions.active
+    active.each do |member|
+      if member.last_billed + 1 != start.at_beginning_of_month
+        puts "WARNING #{member.user.name} last billed date not expected. Skipped billing."
+      else
+        bill_params = {
+          start: start,
+          subscription_id: member.id
+        }
+        self.bill_month(bill_params)
+      end
+    end
+  end
+
+  # Bill 1 costumer for their montly subscription plan
+  def bill_month(params)
+    start = params[:start]
+    subscription = Subscription.find(params[:subscription_id])
+    bill_params = {
+      user_id: subscription.user_id,
+      plan_id: subscription.plan_id,
+      quantity: 1,
+      start: start.at_beginning_of_month,
+      stop: start.at_end_of_month
+      }
+    self.call(bill_params)
+    subscription.last_billed = start.at_end_of_month
+    subscription.save
+  end
+
   def batch_billing(params)
     #
     # # billing is the first day of the month
@@ -36,7 +69,7 @@ class BillMembershipService
       stop: subscription.start.at_end_of_month
       }
     self.call(bill_params)
-    subscription.last_billed = Date.today
+    subscription.last_billed = bill_params[:stop]
     subscription.save
   end
 
@@ -47,6 +80,7 @@ class BillMembershipService
     sales = DoubleEntry.account(:sales_revenue)
     price = Plan.find(params[:plan_id]).price
     amount = price * params[:quantity]
+    puts "Billing #{user.name} #{price} #{params[:start]} : #{params[:stop]}"
     DoubleEntry.transfer(
       Money.new(amount),
       :from => receivables,

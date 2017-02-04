@@ -8,6 +8,7 @@
       <th>Plan</th>
       <th>Start</th>
       <th>Stop</th>
+      <th>Last Billed</th>
       <th>Balance</th>
       <th colspan="1"/>
     </tr>
@@ -20,6 +21,7 @@
         <td><%= s.plan.name %></td>
         <td><%= s.start %></td>
         <td><%= s.stop %></td>
+        <td><%= s.last_billed %></td>
         <td><%= s.user.balance %></td>
         <td><%= link_to 'Show', account_path(s.user.id) %></td>
       </tr>
@@ -30,3 +32,4 @@
 <br>
 
 <%= link_to 'New Subscription', new_subscription_path %>
+<%= render 'billings/bill_active_members' %>
