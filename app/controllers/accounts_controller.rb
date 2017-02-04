@@ -4,7 +4,7 @@ class AccountsController < ApplicationController
 
   def index
     authorize Account
-    @lines = DoubleEntry::Line.all
+    @lines = DoubleEntry::Line.order('created_at DESC')
 
   end
 
@@ -15,6 +15,7 @@ class AccountsController < ApplicationController
     @lines = DoubleEntry::Line.where(scope: params[:id])
     @user = User.find(@account.id)
     @subscriptions = @user.subscriptions
+    @key = @user.key
   end
 
   private

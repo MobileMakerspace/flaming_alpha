@@ -29,7 +29,25 @@
     <% end %>
   </tbody>
 </table>
-
+<% unless @key.nil? %>
+<h1>Key</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th>Assigned</th>
+      <th>Returned</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @key.identifier %></td>
+      <td><%= @key.assigned %></td>
+      <td><%= @key.returned %></td>
+    </tr>
+  </tbody>
+</table>
+<% end %>
 <h1>Ledger</h1>
 
 <table>
