@@ -16,6 +16,7 @@ class AccountsController < ApplicationController
     @user = User.find(@account.id)
     @subscriptions = @user.subscriptions
     @key = @user.key
+    @receivables = DoubleEntry.account(:accounts_receivable, :scope => @user)
   end
 
   private
