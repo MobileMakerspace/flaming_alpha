@@ -14,13 +14,14 @@ feature 'Create invoices', :devise do
     login_as(user, :scope => :user)
     visit invoice_path(member.id)
     expect(page).to have_content("Ledger")
-    fill_in 'Amount', :with => '9999'
+    fill_in 'Amount', :with => '99.99'
     fill_in 'Note', :with => 'manual bill'
     #fill_in 'Start', :with => '2016-11-01'
     select_date(Date.today.at_beginning_of_month, from: 'invoice_start')
     select_date(Date.today.at_end_of_month, from: 'invoice_stop')
     click_button 'Create Invoice'
     expect(page).to have_content("Invoice was successfully created")
+    expect(page).to have_content("99.99")
   end
 
   scenario 'user can not create invoices' do

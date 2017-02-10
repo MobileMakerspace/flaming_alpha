@@ -14,10 +14,11 @@ feature 'Create credit notes', :devise do
     login_as(user, :scope => :user)
     visit credit_note_path(member.id)
     expect(page).to have_content("Ledger")
-    fill_in 'Amount', :with => '9999'
+    fill_in 'Amount', :with => '99.99'
     fill_in 'Note', :with => 'credit user for over billed'
     click_button 'Create Credit Note'
     expect(page).to have_content("Credit note was successfully created")
+    expect(page).to have_content("99.99")
   end
 
   scenario 'user can not create credit notes' do

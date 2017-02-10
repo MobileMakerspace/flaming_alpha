@@ -1,4 +1,4 @@
 class Invoice
-  attr_accessor :id, :amount_cents, :start, :stop, :note
+  attr_accessor :id, :amount_cents, :amount, :start, :stop, :note
 
 end

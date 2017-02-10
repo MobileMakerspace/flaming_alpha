@@ -14,8 +14,9 @@ class CreditNotesController < ApplicationController
   def update
     @user_id = credit_note_params[:id]
     authorize CreditNote
+    amount = Money.from_amount(credit_note_params[:credit_note][:amount].to_d,"USD")
     cn_params = {user_id: @user_id,
-      amount: credit_note_params[:credit_note][:amount_cents],
+      amount: amount,
       note: credit_note_params[:credit_note][:note]
     }
 
@@ -33,6 +34,6 @@ class CreditNotesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def credit_note_params
     #params.require(:credit_note,:id).permit(:id, :note, :amount_cents)
-    params.permit(:id, credit_note: [:note, :amount_cents])
+    params.permit(:id, credit_note: [:note, :amount])
   end
 end

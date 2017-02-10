@@ -14,9 +14,9 @@ class PaymentsController < ApplicationController
   def update
     @user_id = payment_params[:id]
     authorize Payment
-
+    amount = Money.from_amount(payment_params[:payment][:amount].to_d,'USD')
     cn_params = {user_id: @user_id,
-      amount: payment_params[:payment][:amount_cents],
+      amount: amount,
       note: payment_params[:payment][:note]
     }
 
@@ -33,6 +33,6 @@ class PaymentsController < ApplicationController
   private
   # Never trust parameters from the scary internet, only allow the white list through.
   def payment_params
-    params.permit(:id, payment: [:note, :amount_cents])
+    params.permit(:id, payment: [:note, :amount])
   end
 end

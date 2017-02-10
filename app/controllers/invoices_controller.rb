@@ -18,9 +18,9 @@ class InvoicesController < ApplicationController
     params[:invoice][:start] = Date.civil(start["start(1i)"].to_i, start["start(2i)"].to_i, start["start(3i)"].to_i)
     stop =  params[:invoice]
     params[:invoice][:stop] = Date.civil(stop["start(1i)"].to_i, stop["start(2i)"].to_i, stop["start(3i)"].to_i)
-
+    amount = Money.from_amount(invoice_params[:invoice][:amount].to_d,"USD")
     cn_params = {user_id: @user_id,
-      amount: invoice_params[:invoice][:amount_cents],
+      amount: amount,
       note: invoice_params[:invoice][:note],
       start: invoice_params[:invoice][:start],
       stop: invoice_params[:invoice][:stop]
@@ -39,6 +39,6 @@ class InvoicesController < ApplicationController
   private
   # Never trust parameters from the scary internet, only allow the white list through.
   def invoice_params
-    params.permit(:id, invoice: [:note, :amount_cents, :start, :stop])
+    params.permit(:id, invoice: [:note, :amount, :start, :stop])
   end
 end

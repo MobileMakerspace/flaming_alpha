@@ -14,10 +14,11 @@ feature 'Create payments', :devise do
     login_as(user, :scope => :user)
     visit payment_path(member.id)
     expect(page).to have_content("Ledger")
-    fill_in 'Amount', :with => '9999'
+    fill_in 'Amount', :with => '99.99'
     fill_in 'Note', :with => 'cash payment received'
     click_button 'Create Payment'
     expect(page).to have_content("Payment was successfully created")
+    expect(page).to have_content("99.99")
   end
 
   scenario 'user can not create payments' do
