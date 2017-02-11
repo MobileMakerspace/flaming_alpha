@@ -1,15 +1,21 @@
 <%= simple_form_for(@key) do |f| %>
   <%= f.error_notification %>
 
+  <h3>Key: <%= @key.identifier %></h3>
   <div class="form-inputs">
+    <% if @key.assigned.nil? %>
     <%= f.label "User" %>
-    <%= collection_select(:key, :user_id, User.all, :id, :name, {:prompt => 'Select User'}) %>    
-    <%= f.input :identifier %>
-    <%= f.input :assigned, as: :text %>
-    <%= f.input :returned, as: :text %>
+    <%= collection_select(:key, :user_id, User.all, :id, :name, {:prompt => 'Select User'}) %>
+    <% elsif @key.returned.nil? %>
+    <p><%= @key.user.name unless @key.user.nil? %> is returning their key?</p>
+    <% end %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <% if @key.assigned.nil? %>
+    <%= f.button :submit, 'Assign' %>
+    <% elsif @key.returned.nil? %>
+    <%= f.button :submit, 'Return Key' %>
+    <% end %>
   </div>
 <% end %>

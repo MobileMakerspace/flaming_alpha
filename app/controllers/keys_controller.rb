@@ -47,8 +47,15 @@ class KeysController < ApplicationController
   # PATCH/PUT /keys/1.json
   def update
     authorize @key
+    if @key.assigned.nil?
+      @key.returned = nil
+      @key.assigned = Date.today
+    elsif @key.returned.nil?
+      @key.assigned = nil
+      @key.returned = Date.today
+    end
     respond_to do |format|
-      if @key.update(key_params)
+      if @key.save
         format.html { redirect_to @key, notice: 'Key was successfully updated.' }
         format.json { render :show, status: :ok, location: @key }
       else
@@ -77,6 +84,6 @@ class KeysController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def key_params
-      params.require(:key).permit(:identifier, :assigned, :returned, :user_id)
+      params.require(:key).permit(:id, :identifier, :user_id)
     end
 end

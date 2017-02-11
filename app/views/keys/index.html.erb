@@ -20,7 +20,12 @@
         <td><%= key.assigned %></td>
         <td><%= key.returned %></td>
         <td><%= link_to 'Show', key %></td>
-        <td><%= link_to 'Edit', edit_key_path(key) %></td>
+        <td><% if key.assigned.nil? %>
+          <%= link_to 'Assign Key', edit_key_path(key) %>
+          <% elsif key.returned.nil? %>
+          <%= link_to 'Return Key', edit_key_path(key) %>
+          <% end %>
+        </td>
         <td><%= link_to 'Destroy', key, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
