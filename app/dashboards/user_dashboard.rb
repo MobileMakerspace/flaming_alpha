@@ -97,10 +97,10 @@ class UserDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
     :subscriptions,
-    :ledger_items,
-    :member_invoices,
-    :member_payments,
-    :member_credit_notes,
+    # :ledger_items,
+    # :member_invoices,
+    # :member_payments,
+    # :member_credit_notes,
     :invited_by,
     :email,
     :encrypted_password,
