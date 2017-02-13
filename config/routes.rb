@@ -20,6 +20,6 @@ Rails.application.routes.draw do
   resources :settings
   root to: 'visitors#index'
   devise_for :users, controllers: { :registrations => 'users/registrations',:invitations => 'users/invitations'}
-  resources :users, only: [:index, :show]
+  resources :users, only: [:index, :show, :update]
   post "/hook" => "payment_notifications#create"
 end
