@@ -7,11 +7,11 @@ class AccountPolicy
   end
 
   def index?
-    @current_user.admin?
+    @current_user.admin? or @current_user.officer?
   end
 
   def show?
-    @current_user.admin? or @current_user.id.eql?@scope.id
+    @current_user.admin? or @current_user.officer? or @current_user.id.eql?@scope.id
   end
 
 
