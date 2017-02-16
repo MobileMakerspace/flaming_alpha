@@ -1,8 +1,10 @@
 <li><%= link_to 'About', page_path('about') %></li>
 
 <% if user_signed_in? %>
+  <% if current_user.admin? or current_user.host? or current_user.officer? %>
+  <li><%= link_to 'Members', subscriptions_path %></li>
+  <% end %>
   <% if current_user.try(:admin?) %>
-    <li><%= link_to 'Subscriptions', subscriptions_path %></li>
     <li><%= link_to 'Ledger', accounts_path %></li>
 
   <% else %>

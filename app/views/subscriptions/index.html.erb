@@ -32,4 +32,4 @@
 <br>
 
 <%= link_to 'New Subscription', new_subscription_path %>
-<%= render 'billings/bill_active_members' %>
+<%= render 'billings/bill_active_members' if @current_user.admin? %>

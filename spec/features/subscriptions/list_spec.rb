@@ -28,7 +28,7 @@ feature 'Subscriber list', :devise do
     membership = FactoryGirl.create(:member)
     login_as(host, :scope => :user)
     visit subscriptions_path()
-    expect(page).to have_content('not authorized')
+    expect(page).to have_content(membership.user.name)
   end
 
   scenario 'officer cannot see a list of subscriber details' do
@@ -36,7 +36,7 @@ feature 'Subscriber list', :devise do
     membership = FactoryGirl.create(:member)
     login_as(officer, :scope => :user)
     visit subscriptions_path()
-    expect(page).to have_content('not authorized')
+    expect(page).to have_content(membership.user.name)
   end
 
 

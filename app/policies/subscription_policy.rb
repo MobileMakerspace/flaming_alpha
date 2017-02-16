@@ -7,7 +7,7 @@ class SubscriptionPolicy
   end
 
   def index?
-    @current_user.admin?
+    @current_user.admin? or @current_user.officer? or @current_user.host?
   end
 
   def new?
