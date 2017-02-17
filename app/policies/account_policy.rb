@@ -11,7 +11,7 @@ class AccountPolicy
   end
 
   def show?
-    @current_user.admin? or @current_user.officer? or @current_user.host? or @current_user.id.eql?@scope.id
+    @current_user.admin? or @current_user.officer? or @current_user.id.eql?@scope.id
   end
 
 
