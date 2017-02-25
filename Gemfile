@@ -29,7 +29,8 @@ gem 'bourbon'
 gem 'administrate'
 gem 'money-rails'
 gem "rails-settings-cached"
-
+gem 'paypal-sdk-rest'
+gem 'dotenv-rails', groups: [:development, :test]
 group :development do
   gem 'better_errors'
   gem 'foreman'

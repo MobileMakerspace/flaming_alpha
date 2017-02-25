@@ -22,4 +22,8 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { :registrations => 'users/registrations',:invitations => 'users/invitations'}
   resources :users, only: [:index, :show, :update]
   post "/hook" => "payment_notifications#create"
+  resources :paypal_payments, only: [:index]
+  put "/paypal_payments" => "paypal_payments#create"
+  get "/done" => "paypal_payments#done"
+  get "/cancel" => "paypal_payments#cancel"
 end
