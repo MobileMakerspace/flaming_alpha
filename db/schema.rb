@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170213235504) do
+ActiveRecord::Schema.define(version: 20170301173131) do
 
   create_table "audits", force: :cascade do |t|
     t.integer  "auditable_id"
@@ -118,6 +118,15 @@ ActiveRecord::Schema.define(version: 20170213235504) do
     t.boolean  "applied",             default: false, null: false
     t.integer  "user_id"
     t.index ["user_id"], name: "index_payment_notifications_on_user_id"
+  end
+
+  create_table "paypal_webhooks", force: :cascade do |t|
+    t.text     "notification_params"
+    t.string   "status"
+    t.string   "event_verify_status"
+    t.string   "event_id"
+    t.datetime "purchased_at"
+    t.string   "summary"
   end
 
   create_table "plans", force: :cascade do |t|

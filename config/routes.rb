@@ -26,4 +26,5 @@ Rails.application.routes.draw do
   put "/paypal_payments" => "paypal_payments#create"
   get "/done" => "paypal_payments#done"
   get "/cancel" => "paypal_payments#cancel"
+  post "/webhook" => "paypal_webhook#webhook"
 end

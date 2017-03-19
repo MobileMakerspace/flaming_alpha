@@ -1,5 +1,6 @@
 class PaypalPaymentsController < ApplicationController
-  before_action :authenticate_user!
+  protect_from_forgery :except => [:webhook] #Otherwise the request from PayPal wouldn't make it to the controller
+  before_action :authenticate_user!, :except => [:webhook]
 
   def index
   end
@@ -27,6 +28,7 @@ class PaypalPaymentsController < ApplicationController
   def cancel
     redirect_to '/', notice: 'You canceled payment'
   end
+
 
   private
 
