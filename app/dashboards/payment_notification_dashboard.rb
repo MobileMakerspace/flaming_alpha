@@ -13,6 +13,8 @@ class PaymentNotificationDashboard < Administrate::BaseDashboard
     status: Field::String,
     transaction_id: Field::String,
     purchased_at: Field::DateTime,
+    applied: Field::Boolean,
+    user_id: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -26,7 +28,7 @@ class PaymentNotificationDashboard < Administrate::BaseDashboard
     :id,
     :notification_params,
     :status,
-    :transaction_id,
+    :user_id,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -37,6 +39,8 @@ class PaymentNotificationDashboard < Administrate::BaseDashboard
     :status,
     :transaction_id,
     :purchased_at,
+    :applied,
+    :user_id,
     :created_at,
     :updated_at,
   ].freeze
@@ -49,6 +53,8 @@ class PaymentNotificationDashboard < Administrate::BaseDashboard
     :status,
     :transaction_id,
     :purchased_at,
+    :applied,
+    :user_id,
   ].freeze
 
   # Overwrite this method to customize how payment notifications are displayed
