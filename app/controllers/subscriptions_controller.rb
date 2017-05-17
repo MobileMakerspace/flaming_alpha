@@ -36,6 +36,24 @@ class SubscriptionsController < ApplicationController
       end
     end
   end
+  def edit
+    @subscription = Subscription.find(params[:id])
+    authorize @subscription
+  end
+
+  def update
+    @subscription = Subscription.find(params[:id])
+    authorize @subscription
+    respond_to do |format|
+      if @subscription.update(subscription_params)
+        format.html { redirect_to account_path(@subscription.user.id), notice: 'Subscription was successfully updated.' }
+        format.json { render :show, status: :ok, location: @subscription }
+      else
+        format.html { render :edit }
+        format.json { render json: @subscription.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
   private
   # Never trust parameters from the scary internet, only allow the white list through.

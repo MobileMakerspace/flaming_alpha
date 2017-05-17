@@ -1,0 +1,17 @@
+<h1>Editing Subscription</h1>
+
+<%= simple_form_for(@subscription) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <p>
+      <%= @subscription.user.name =%>
+      <%= @subscription.start %>
+      <%= f.input :stop, as: :date %>    
+  </p>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, 'Update' %>
+  </div>
+<% end %>
