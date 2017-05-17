@@ -27,7 +27,7 @@ Rails.application.configure do
   end
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.perform_caching = false
 
@@ -42,26 +42,24 @@ Rails.application.configure do
   # number of complex assets.
   config.assets.debug = true
 
-  '''
   config.action_mailer.smtp_settings = {
-    address: "smtp.gmail.com",
+    address: Rails.application.secrets.smtp_host,
     port: 587,
     domain: Rails.application.secrets.domain_name,
-    authentication: "plain",
+    authentication: "login",
     enable_starttls_auto: true,
     user_name: Rails.application.secrets.email_provider_username,
     password: Rails.application.secrets.email_provider_password
   }
-  '''
+
   # Use mailcatcher locally in development
-  config.action_mailer.smtp_settings = { :address => 'localhost', :port => 1025 }
+  # config.action_mailer.smtp_settings = { :address => 'localhost', :port => 1025 }
   # ActionMailer Config
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.raise_delivery_errors = true
   # Send email in development mode?
   config.action_mailer.perform_deliveries = true
-
 
   # Suppress logger output for asset requests.
   config.assets.quiet = true
@@ -82,5 +80,5 @@ Rails.application.configure do
    end
    load 'config/initializers/double_entry.rb'
  end
- 
+
 end
