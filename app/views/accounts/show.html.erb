@@ -26,7 +26,7 @@
         <td><%= s.plan.price %></td>
         <td><%= s.start %></td>
         <td><%= s.stop %></td>
-        <td><%= link_to 'Edit', edit_subscription_path(s.id) %></td>
+        <td><% if @current_user.admin? %><%= link_to 'Edit', edit_subscription_path(s.id) %><% end %></td>
       </tr>
     <% end %>
   </tbody>

@@ -7,7 +7,6 @@
       <th>User</th>
       <th>Plan</th>
       <th>Start</th>
-      <th>Stop</th>
       <% if !@current_user.host? %>
       <th>Last Billed</th>
       <th>Balance</th>
@@ -22,7 +21,6 @@
         <td><%= s.user.name %></td>
         <td><%= s.plan.name %></td>
         <td><%= s.start %></td>
-        <td><%= s.stop %></td>
         <% if !@current_user.host? %>
         <td><%= s.last_billed %></td>
         <td><%= s.user.balance %></td>
