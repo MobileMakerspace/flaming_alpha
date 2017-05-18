@@ -16,4 +16,14 @@ class Subscription < ApplicationRecord
     where("stop IS ?", nil)
   }
 
+  def self.inactive_users
+    inactive = Subscription.where('stop is not ?', nil)
+    inactive_users =[]
+    inactive.each {|x| inactive_users << x.user_id }
+    active = Subscription.active
+    active_users = []
+    active.each {|x| active_users << x.user_id }
+    inactive_users - active_users
+  end
+
 end

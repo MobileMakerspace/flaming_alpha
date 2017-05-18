@@ -5,6 +5,7 @@ class SubscriptionsController < ApplicationController
   def index
     @subscriptions = Subscription.all
     @active = @subscriptions.active
+    @inactive = Subscription.where(user_id: Subscription.inactive_users)
     authorize Subscription
   end
 

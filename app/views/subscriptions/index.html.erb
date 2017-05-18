@@ -34,6 +34,40 @@
 </table>
 
 <br>
+<h1><%= @inactive.count %> Inactive Subscriptions</h1>
 
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Plan</th>
+      <th>Start</th>
+      <th>Stop</th>
+      <% if !@current_user.host? %>
+      <th>Last Billed</th>
+      <th>Balance</th>
+      <th colspan="1"/>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @inactive.each do |s| %>
+      <tr>
+        <td><%= s.user.name %></td>
+        <td><%= s.plan.name %></td>
+        <td><%= s.start %></td>
+        <td><%= s.stop %></td>
+        <% if !@current_user.host? %>
+        <td><%= s.last_billed %></td>
+        <td><%= s.user.balance %></td>
+        <td><%= link_to 'Show', account_path(s.user.id) %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
 <%= link_to 'New Subscription', new_subscription_path if @current_user.admin? %>
 <%= render 'billings/bill_active_members' if @current_user.admin? %>
