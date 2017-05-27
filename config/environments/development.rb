@@ -42,18 +42,18 @@ Rails.application.configure do
   # number of complex assets.
   config.assets.debug = true
 
-  config.action_mailer.smtp_settings = {
-    address: Rails.application.secrets.smtp_host,
-    port: 587,
-    domain: Rails.application.secrets.domain_name,
-    authentication: "login",
-    enable_starttls_auto: true,
-    user_name: Rails.application.secrets.email_provider_username,
-    password: Rails.application.secrets.email_provider_password
-  }
+  # config.action_mailer.smtp_settings = {
+  #   address: Rails.application.secrets.smtp_host,
+  #   port: 587,
+  #   domain: Rails.application.secrets.domain_name,
+  #   authentication: "login",
+  #   enable_starttls_auto: true,
+  #   user_name: Rails.application.secrets.email_provider_username,
+  #   password: Rails.application.secrets.email_provider_password
+  # }
 
   # Use mailcatcher locally in development
-  # config.action_mailer.smtp_settings = { :address => 'localhost', :port => 1025 }
+  config.action_mailer.smtp_settings = { :address => 'localhost', :port => 1025 }
   # ActionMailer Config
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   config.action_mailer.delivery_method = :smtp
