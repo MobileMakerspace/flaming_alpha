@@ -7,7 +7,7 @@ class PaypalPaymentsController < ApplicationController
 
   def create
     amount = Money.from_amount(detail[:paypal_payment][:amount].to_d,'USD')
-    @payment = PaypalPaymentService.new(get_host, amount) #detail[:amount])
+    @payment = PaypalPaymentService.new(get_host, amount)
     if @payment.accept
       redirect_to extract_link(@payment.response)
     else
@@ -41,7 +41,6 @@ class PaypalPaymentsController < ApplicationController
   end
 
   def extract_link(data)
-    #data.links.find { |link| link.rel == 'approval_url' }.href
     data.approval_url(true)
   end
 
@@ -58,7 +57,6 @@ class PaypalPaymentsController < ApplicationController
     }
 
     AcceptPaymentService.new.call(cn_params)
-    #Payment.create attributes
   end
 
   def payment_structure(concern, amount, payer, paid_at)

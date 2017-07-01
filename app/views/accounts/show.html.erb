@@ -81,3 +81,7 @@
     </tr>
   </tbody>
 </table>
+
+<% if Rails.env.development? %>
+  <%= link_to('Pay Balance with PayPal', paypal_payments_path) %>
+<% end %>
