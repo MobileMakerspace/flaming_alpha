@@ -31,4 +31,31 @@
   </tbody>
 </table>
 
+<h1>Paypal Notices</h1>
+<p>Subscription changes and payment failures</p>
+<table>
+  <thead>
+    <tr>
+      <th>PayPal User</t>
+      <th>Transaction ID</th>
+      <th>Status</th>
+      <th>Purchased</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @paypal_notices.each do |payment| %>
+      <tr>
+        <td><%= payment.name %>
+        <td><%= payment.transaction_id %></td>
+        <td><%= payment.status %></td>
+        <td><%= payment.purchased_at %></td>
+        <td><%= link_to 'Show', payment_notification_path(payment) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
 <br>
