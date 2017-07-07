@@ -6,8 +6,8 @@ class PaymentNotificationsController < ApplicationController
   # GET /payments.json
   def index
     authorize PaymentNotification
-    @payment_notifications = PaymentNotification.where(status: "Completed").order(created_at: :desc)
-    @paypal_notices = PaymentNotification.where.not(status: "Completed").order(created_at: :desc)
+    @payment_notifications = PaymentNotification.where.not("transaction_id IS NULL").order(created_at: :desc)
+    @paypal_notices = PaymentNotification.where("transaction_id IS NULL").order(created_at: :desc)
   end
 
   # GET /payments/1
