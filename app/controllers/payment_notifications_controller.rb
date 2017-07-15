@@ -1,3 +1,5 @@
+require 'net/http'
+
 class PaymentNotificationsController < ApplicationController
   protect_from_forgery :except => [:create] #Otherwise the request from PayPal wouldn't make it to the controller
   before_action :authenticate_user!, :except => [:create]
