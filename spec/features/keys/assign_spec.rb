@@ -26,6 +26,7 @@ feature 'Assign keys', :devise do
     select "#{user.name}", :from => "key_user_id"
     click_button 'Assign'
     expect(page).to have_content('Key was successfully updated')
+    expect(page).to have_content(user.name)
   end
 
   scenario 'admin returns key from user' do

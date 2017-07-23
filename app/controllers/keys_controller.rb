@@ -50,9 +50,11 @@ class KeysController < ApplicationController
     if @key.assigned.nil?
       @key.returned = nil
       @key.assigned = Date.today
+      @key.user_id = key_params[:user_id]
     elsif @key.returned.nil?
       @key.assigned = nil
       @key.returned = Date.today
+      @key.user_id = nil
     end
     respond_to do |format|
       if @key.save
