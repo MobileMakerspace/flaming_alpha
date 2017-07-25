@@ -1,0 +1,25 @@
+<% content_for :title do %>Collect Payment<% end %>
+<p>You may not have adequate permissions to apply payments.
+<p>
+If the new member has paid by Paypal apply the payment to the member's account.
+<ul>Apply Paypal Payment
+  <li>Browse to <%= link_to "PayPal Payments", payment_notifications_path() %></li>
+  <li>Find the Paypal payment notice. It is sorted by most recent first</li>
+  <li>Click "Apply"</li>
+  <li>Select the member to apply the payment towards</li>
+  <li>Submit</li>
+</ul>
+</p>
+<p>
+If the member is paying by cash or check
+<ul>Apply Cash or Check Payment
+  <li>Handwrite a receipt giving the top copy to the member</li>
+  <li>Browse to the member's record <%= link_to "Members", subscriptions_path() %></li>
+  <li>Select "Show" for the member's record you're applying the payment</li>
+  <li>The member record loads, select "Payment" from the menu near the top of the page</li>
+  <li>Member's ledger will show with a form at the bottom of the page</li>
+  <li>Enter the payment amount as a decimal: 35.00</li>
+  <li>Enter a short note: Cash payment to Joey</li>
+  <li>Select "Create Payment"</li>
+</ul>
+</p>
