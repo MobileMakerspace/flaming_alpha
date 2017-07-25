@@ -2,7 +2,8 @@
 <ul>New Member Workflow
   <li><%= link_to "Add User", new_user_invitation_path() %></li>
   <li><%= link_to "New Subscription", new_subscription_path() %></li>
-  <li><%= link_to "Collect Payment" %></li>
+  <li><%= link_to "Collect Payment" , page_path('payment')%></li>
+  <li><%= link_to 'Create Wiki Account', page_path('wiki') %></li>
 </ul>
 <ul>General
   <li><%= link_to 'Ledger', accounts_path() %></li>
