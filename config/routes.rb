@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :credit_notes, only: [:show, :update]
   resources :invoices, only: [:show, :update]
   resources :payments, only: [:show, :update]
+  resources :refunds, only: [:show, :update]
   resources :billings, only: [:create]
   resources :settings
   root to: 'visitors#index'

@@ -1,0 +1,3 @@
+class RefundPolicy <FinancialPolicy
+
+end
