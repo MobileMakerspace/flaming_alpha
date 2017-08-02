@@ -8,6 +8,9 @@
   </tbody>
 </table>
 <h1>Subscriptions</h1>
+<% if @subscriptions.count == 0 %>
+<p>We're not finding a current membership. Sign up at <%= link_to 'Mobile Makerspace Membership', 'http://makerspacemobile.org/membership/' %> by selecting a membership type and paying via PayPal.</p>
+<% else %>
 <table>
   <thead>
     <tr>
@@ -31,6 +34,7 @@
     <% end %>
   </tbody>
 </table>
+<% end %>
 <% unless @key.nil? %>
 <h1>Key</h1>
 <table>
